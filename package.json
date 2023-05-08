@@ -4,7 +4,8 @@
   "description": "This API for task management",
   "main": "server",
   "scripts": {
-    "test": "npm run test"
+    "test": "npm run test",
+    "dev":"nodemon server.js"
   },
   "repository": {
     "type": "git",
