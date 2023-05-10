@@ -1,0 +1,21 @@
+version: "3"
+services:
+  nodejs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - mongodb
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      - MONGO_DB=mongodb+srv://ose1:o9o55779759@cluster0.rfy96n4.mongodb.net/Task_Manager?retryWrites=true&w=majority
+
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data/ddatabase
