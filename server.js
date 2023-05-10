@@ -2,6 +2,7 @@ const express = require("express");
 const ConnectDB = require("./database/connection");
 const Tasks = require("./routes/tasks.route");
 const cors = require("cors")
+const NotFound = require('./middlewares/not-found')
 require("dotenv").config();
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(cors())
 app.use(express.static("./public"))
 
 
+app.use(NotFound)
 //Middlewares
 app.use("/api/v1/task", Tasks);
 app.post("/api/v1/task", Tasks);
