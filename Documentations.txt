@@ -1,0 +1,16 @@
+                    API Endpoints
+*****************************************************************************
+
+
+
+
+GET - /api/v1/task  ----------- Get all the Tasks 
+
+GET - /api/v1/task/:id -------------- Get each Task 
+
+POST - /api/v1/task -------------- Create Task 
+
+PUT/PATCH - /api/v1/task/:id --------- Update each Task 
+
+DELETE - /api/vi/task/:id  ----------- Delete each task 
+
