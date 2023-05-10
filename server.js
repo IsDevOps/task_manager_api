@@ -1,16 +1,17 @@
 const express = require("express");
 const ConnectDB = require("./database/connection");
 const Tasks = require("./routes/tasks.route");
+const cors = require("cors")
 require("dotenv").config();
 
 const app = express();
 const Port = process.env.PORT;
 
+//middleware
 app.use(express.json());
+app.use(cors())
+app.use(express.static("./public"))
 
-app.get("/", (req, res) => {
-  res.send("Welcome to Task Manager");
-});
 
 //Middlewares
 app.use("/api/v1/task", Tasks);

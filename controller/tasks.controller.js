@@ -17,9 +17,16 @@ const getAllTasks = async (req, res) => {
 
 //
 const updateTask = async (req, res) => {
-  const {id: updateID}= req.params
   try {
-    const updateTask = await TaskModel.findById({_id: updateID });
+    const {id: updateID}= req.params
+    const updateTask = await TaskModel.findOneAndUpdate({_id : updateID},req.body,{new:true,runValidators:true});
+    
+    if (!updateTask) {
+      return res.status(500).send({ message: `No such task ${updateID}` });
+    }
+    return res.status(201).json({ message: updateTask });
+
+    res.status(200).json({data: req.body})
   } catch (error) {
     res.status(500).json({
       message: error,
@@ -32,7 +39,7 @@ const getTask = async (req, res) => {
     const { id: taskID } = req.params;
     const task = await TaskModel.findOne({ _id: taskID });
     if (!task) {
-      return res.status(500).json({ message: `No such task ${taskID}` });
+      return res.status(500).send({ message: `No such task ${taskID}` });
     }
     return res.status(201).json({ message: task });
   } catch (error) {
